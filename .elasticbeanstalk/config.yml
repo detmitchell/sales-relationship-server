@@ -1,0 +1,22 @@
+branch-defaults:
+  master:
+    environment: sales-relationship-server-env
+environment-defaults:
+  SalesRelationshipServer-env:
+    branch: null
+    repository: null
+  sales-relationship-server-env:
+    branch: null
+    repository: null
+global:
+  application_name: sales-relationship-server
+  default_ec2_keyname: null
+  default_platform: node.js
+  default_region: us-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git
+  workspace_type: Application
