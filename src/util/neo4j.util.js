@@ -1,4 +1,5 @@
-var neo4j   = require('neo4j-driver').v1;
+var queryBuilder    = require('./query.util'),
+    neo4j           = require('neo4j-driver').v1;
 
 const AllEntitiesQuery  = 'MATCH (n) RETURN n UNION ALL MATCH ()-[n]->() RETURN n';
 
@@ -13,6 +14,18 @@ Neo4j.prototype.getRecords = function(query, cb){
     .run(query || AllEntitiesQuery)
     .then(function(data){
       return cb(null,formatResponse(data.records));
+    })
+    .catch(function(err){
+      return cb(err);
+    });
+}
+
+Neo4j.prototype.putRecord = function(entity, cb){
+  let query = queryBuilder.insertNewRecord(entity);
+  this._session
+    .run(query)
+    .then(function(data){
+      return cb(null,query);
     })
     .catch(function(err){
       return cb(err);

@@ -13,7 +13,14 @@ app.get('/', function(req,res){
 
 app.post('/api/list/entities', function(req,res){
   db.getRecords(req.body.query, function(err, response){
-    if(err) throw err;
+    if(err) res.status(500).send(err);
+    res.status(200).send(response);
+  });
+});
+
+app.post('/api/put/entity', function(req,res){
+  db.putRecord(req.body.entity, function(err,response){
+    if(err) res.status(500).send(err);
     res.status(200).send(response);
   });
 });
