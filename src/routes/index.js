@@ -1,1 +1,1 @@
-module.exports.unprotectedRoutes = require("./unprotected-routes");
+module.exports.public = require('./public');
